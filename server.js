@@ -1,8 +1,21 @@
 const express = require('express');
 const app = express();
 const path = require('path');  
-var server = require('http').Server(app);
-const io = require('socket.io')(server);
+const WebSocket = require('ws');
+const server = require('http').createServer(app);
+
+// Web socket
+
+const wss = new WebSocket.Server({ server:server });
+wss.on('connection', (ws)=> {
+  ws.on('message', (message)=> {
+    console.log('received: %s', message);
+  });
+
+  ws.send('something');
+});
+
+// Express
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, './public')));
