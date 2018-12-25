@@ -11,8 +11,8 @@ class Environment extends Component {
     render() { 
         return (  
             <div >
-                <canvas ref="canvas" width = {640} height = {420}
-                    style="border:1px solid #000000;"
+                <canvas ref="canvas" 
+                    style={{ border:'1px solid #000000', width:'100vw', height:'99vh'}}
                 />
             </div>
         );
