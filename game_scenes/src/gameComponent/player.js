@@ -14,8 +14,8 @@ export default class Player extends Component {
   }
 
   drawPlayer = () => {
-    console.log(this.state.ctx);
+    console.log(this.state.x);
     this.state.ctx.fillStyle = "#FF0000";
-    this.state.ctx.fillRect(this.x, this.y, this.width, this.height);
+    this.state.ctx.fillRect(this.state.x, this.state.y, this.state.width, this.state.height);
   }
 }

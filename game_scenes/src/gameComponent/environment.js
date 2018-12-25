@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Player from './player';
+import { cpus } from 'os';
 
 class Environment extends Component {
     state = {  }
@@ -16,6 +17,9 @@ class Environment extends Component {
         }
         var player = new Player(propsForPlayer);
         player.drawPlayer();
+        console.log('now draw');
+        ctx.fillStyle = "#FF0000";
+        ctx.fillRect(10, 10, 20,20);
     }
 
     render() { 
