@@ -12,7 +12,7 @@ class Environment extends Component {
         return (  
             <div >
                 <canvas ref="canvas" 
-                    style={{ border:'1px solid #000000', width:'100vw', height:'99vh'}}
+                    style={{ border:'1px solid #000000', width:'100vw', height:'100vh'}}
                 />
             </div>
         );
