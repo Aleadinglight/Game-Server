@@ -10,8 +10,9 @@ export default class Player extends Component {
 
   render() {
     return (
-        <div></div>
-        
+        <div className = "player">
+            /8
+        </div>
     );
   }
 }
