@@ -12,7 +12,13 @@ npm install --save socket.io
 npm install -g nodemon
 ```
 
-2. 
+2. Create a new react app inside `express`, install react socket.
 ```
-nodemon server.js
-``
+create-react-app game_scenes
+npm i react-websocket
+```
+
+3. add this to react app `package.json`
+```json
+    "proxy": "http://localhost:3000/"
+```
