@@ -22,3 +22,9 @@ npm i react-websocket
 ```json
     "proxy": "http://localhost:3000/"
 ```
+
+4. Run server and react on two different command line.
+```bash
+nodemon server.js
+npm start
+```
