@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Player from './player';
-import { cpus } from 'os';
+import Websocket from 'react-websocket';
 
 class Environment extends Component {
     state = {  }
@@ -18,15 +18,17 @@ class Environment extends Component {
         var player = new Player(propsForPlayer);
         player.drawPlayer();
         console.log('now draw');
+        ctx.translate(-0.5, -0.5);
         ctx.fillStyle = "#FF0000";
+        ctx.strokeWidth = 1.0;
         ctx.fillRect(10, 10, 20,20);
     }
 
     render() { 
         return (  
             <div >
-                <canvas ref="canvas" 
-                    style={{ border:'1px solid #000000', width:'99vw', height:'99vh'}}
+                <canvas ref="canvas" width="100vw" height="100vh"
+                    style={{ border:'1px solid #000000'}}
                 />
             </div>
         );
