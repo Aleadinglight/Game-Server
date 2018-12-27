@@ -16,18 +16,27 @@ wss.on('connection', (ws)=> {
   ws.send('something');
 });
 
-const port = process.env.PORT || 3000;
+
 
 // Express
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, './public')));
+app.use(express.static(path.join(__dirname, '')));
+
+app.get('/game', (req, res) => {	
+	res.sendFile(path.join(__dirname + '/game_scenes/build/index.html'));
+});
+
+app.get('/g', (req, res) => {	
+	res.sendFile(path.join(__dirname + '/game_scenes/public/index.html'));
+});
 
 app.get('/', (req, res) => {	
-	res.sendFile(path.join(__dirname + './index.html?id={port}'));
+	res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
 /** handle other requests to index.html */
 app.get('*', (req, res, next) => res.redirect('/'));
 
+const port = process.env.PORT || 3000;
 server.listen(port, () => console.log(`Listening on port ${port}...`));
