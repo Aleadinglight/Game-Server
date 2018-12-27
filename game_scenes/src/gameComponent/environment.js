@@ -24,13 +24,18 @@ class Environment extends Component {
         ctx.fillRect(10, 10, 20,20);
     }
 
+    handleData(data) {
+        //let result = JSON.parse(data);
+        console.log(data);   
+    }
+
     render() { 
         return (  
             <div >
                 <canvas ref="canvas" width="100vw" height="100vh"
                     style={{ border:'1px solid #000000'}}
                 />
-                <Websocket url='wss://localhost:3000'
+                <Websocket url='ws://localhost:3000'
                     onMessage={this.handleData.bind(this)}/>
             </div>
         );
