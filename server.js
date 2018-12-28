@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');  
 const WebSocket = require('ws');
 const server = require('http').createServer(app);
+const logger = require('morgan');
 
 // Web socket
 
@@ -20,23 +21,27 @@ wss.on('connection', (ws)=> {
 
 // Express
 
+app.use(logger('dev'));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '')));
 
-app.get('/game', (req, res) => {	
-	res.sendFile(path.join(__dirname + '/game_scenes/build/index.html'));
+// serve requests with /game to react build
+app.use('/game', express.static(path.join(__dirname, './game_scenes/build'))); 
+
+// handle all requests with /game to file react index.html
+app.get('/game', (req, res) => {
+	res.sendFile(path.join(__dirname, './game_scenes/build/index.html'));
 });
 
-app.get('/g', (req, res) => {	
-	res.sendFile(path.join(__dirname + '/game_scenes/public/index.html'));
-});
+// app.get('/g', (req, res) => {	
+// 	res.sendFile(path.join(__dirname + '/game_scenes/public/index.html'));
+// });
 
-app.get('/', (req, res) => {	
-	res.sendFile(path.join(__dirname + '/public/index.html'));
-});
+// app.get('/', (req, res) => {	
+// 	res.sendFile(path.join(__dirname + '/public/index.html'));
+// });
 
 /** handle other requests to index.html */
-app.get('*', (req, res, next) => res.redirect('/'));
+// app.get('*', (req, res, next) => res.redirect('/'));
 
 const port = process.env.PORT || 3000;
 server.listen(port, () => console.log(`Listening on port ${port}...`));
