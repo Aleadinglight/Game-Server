@@ -18,7 +18,7 @@ create-react-app game_scenes
 npm i react-websocket
 ```
 
-3. add this to react app `package.json`
+3. Add this to react app `package.json`, ignored if there aren't any fetch request from client to express.
 ```json
     "proxy": "http://localhost:3000/"
 ```
@@ -28,3 +28,5 @@ npm i react-websocket
 nodemon server.js
 npm start
 ```
+
+5. Build React app and serve with express.
