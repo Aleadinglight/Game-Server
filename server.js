@@ -23,12 +23,8 @@ wss.on('connection', (ws)=> {
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '')));
 
-app.get('/game', (req, res) => {	
-	res.sendFile(path.join(__dirname + '/game_scenes/build/index.html'));
-});
-
 app.get('/g', (req, res) => {	
-	res.sendFile(path.join(__dirname + '/game_scenes/public/index.html'));
+	res.sendFile(path.join(__dirname + '/game_scenes/build/client.html'));
 });
 
 app.get('/', (req, res) => {	
