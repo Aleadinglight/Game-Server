@@ -9,9 +9,12 @@ const logger = require('morgan');
 
 const wss = new WebSocket.Server({ server:server });
 wss.on('connection', (ws)=> {
-  console.log(ws);
+  //console.log(ws);
+  console.log('Connection established.');
   ws.on('message', (message)=> {
     console.log('received: %s', message);
+    var dataReceived = JSON.parse(message);
+    console.log(dataReceived.a);
   });
   ws.send('something');
 });
