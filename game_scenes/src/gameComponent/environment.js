@@ -23,7 +23,9 @@ class Environment extends Component {
         ctx.strokeWidth = 1.0;
         ctx.fillRect(10, 10, 20,20);
         // 
-        this.ws = new WebSocket('ws://localhost:8080/dashboard')
+        this.ws = new WebSocket('ws://localhost:3000');
+        this.ws.onopen = () => {this.handleOpen()};
+        this.ws.onmessage = (event) => {this.handleData(event.data)};
     }
 
     componentWillUnmount(){
@@ -32,15 +34,13 @@ class Environment extends Component {
 
     handleOpen(){
         // Send a message to identify itself as the game scene
-        console.log(this.refWebSocket);
         var identifyMessage = {type: "gameScene"};
-        console.log(JSON.stringify(identifyMessage));
-        this.refWebSocket.sendMessage(JSON.stringify(identifyMessage));
+        this.ws.send(JSON.stringify(identifyMessage));
         
     }
 
     handleData(data) {
-        console.log(data);   
+        console.log("Data received: "+data);   
     }
 
     render() { 
