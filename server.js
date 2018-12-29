@@ -15,14 +15,20 @@ wss.on('connection', (ws)=> {
   //console.log(ws);
   console.log('Connection established.');
   ws.on('message', (message)=> {
+    
     console.log('received: %s', message);
     var dataReceived = JSON.parse(message);
+    
     // If this message is sent from a gameScene
     if (dataReceived.type == "gameScene"){
       // Save this connection as a gameScene
       gameSceneSocket.push(ws);
     }
-
+    else if (dataReceived.type == "client"){
+      gameSceneSocket.forEach((gameSocket) =>{
+        gameSocket.send(message);        
+      });
+    }
   });
   //ws.send('something');
 });
