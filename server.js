@@ -7,6 +7,9 @@ const logger = require('morgan');
 
 // Web socket
 
+// An object to store Game Scenes sockets
+var gameSceneSocket = [];
+
 const wss = new WebSocket.Server({ server:server });
 wss.on('connection', (ws)=> {
   //console.log(ws);
@@ -14,9 +17,14 @@ wss.on('connection', (ws)=> {
   ws.on('message', (message)=> {
     console.log('received: %s', message);
     var dataReceived = JSON.parse(message);
-    console.log(dataReceived.a);
+    // If this message is sent from a gameScene
+    if (dataReceived.type == "gameScene"){
+      // Save this connection as a gameScene
+      gameSceneSocket.push(ws);
+    }
+
   });
-  ws.send('something');
+  //ws.send('something');
 });
 
 // Express
