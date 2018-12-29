@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Player from './player';
-import Websocket from 'react-websocket';
+//import Websocket from 'react-websocket';
 
 class Environment extends Component {
     state = {  }
@@ -22,12 +22,21 @@ class Environment extends Component {
         ctx.fillStyle = "#FF0000";
         ctx.strokeWidth = 1.0;
         ctx.fillRect(10, 10, 20,20);
+        // 
+        this.ws = new WebSocket('ws://localhost:8080/dashboard')
+    }
+
+    componentWillUnmount(){
+        this.ws.close();    
     }
 
     handleOpen(){
         // Send a message to identify itself as the game scene
+        console.log(this.refWebSocket);
         var identifyMessage = {type: "gameScene"};
-        this.refWebSocket.send();
+        console.log(JSON.stringify(identifyMessage));
+        this.refWebSocket.sendMessage(JSON.stringify(identifyMessage));
+        
     }
 
     handleData(data) {
@@ -39,13 +48,6 @@ class Environment extends Component {
             <div >
                 <canvas ref="canvas" width="100vw" height="100vh"
                     style={{ border:'1px solid #000000'}}
-                />
-                <Websocket url='ws://localhost:3000'
-                    onOpen={this.handleOpen}
-                    onMessage={this.handleData.bind(this)}
-                    ref={ (Websocket) => {
-                        this.refWebSocket = Websocket;
-                    }}
                 />
             </div>
         );
