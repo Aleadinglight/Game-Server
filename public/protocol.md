@@ -16,7 +16,7 @@ Client connects with server using Flutter web socket channel. The `.json` messag
 }
 ```
 
-The purpose of `is` is to let the server knows which one is connecting to the server. The server will store a map <id, connection> for processing messages.
+The purpose of `id` is to let the server knows which one is connecting to the server. The server will store a map <id, connection> for processing messages.
 
 ## GameScene
 
@@ -27,3 +27,11 @@ Game scenes connect to server using react-websocket. There is only one message t
     "type":"gameScene",
 }
 ```
+
+## Process
+
+1. Client and GameScene connected to Server.
+
+2. Server stores the information of Client into a map<id, connection>
+
+3. Every time Client send message informing the player move to Server, the Server broadcast the information to all the browsers. The browser update the game state based on the broadcasted information.
