@@ -24,6 +24,12 @@ class Environment extends Component {
         ctx.fillRect(10, 10, 20,20);
     }
 
+    handleOpen(){
+        // Send a message to identify itself as the game scene
+        var identifyMessage = {type: "gameScene"};
+        this.refWebSocket.send();
+    }
+
     handleData(data) {
         console.log(data);   
     }
@@ -35,7 +41,12 @@ class Environment extends Component {
                     style={{ border:'1px solid #000000'}}
                 />
                 <Websocket url='ws://localhost:3000'
-                    onMessage={this.handleData.bind(this)}/>
+                    onOpen={this.handleOpen}
+                    onMessage={this.handleData.bind(this)}
+                    ref={ (Websocket) => {
+                        this.refWebSocket = Websocket;
+                    }}
+                />
             </div>
         );
     }

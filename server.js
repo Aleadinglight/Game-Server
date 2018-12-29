@@ -47,11 +47,6 @@ app.get('/game', (req, res) => {
 });
 
 
-
-app.get('/', (req, res) => {	
-  res.sendFile(path.join(__dirname + '/public/index.html'));
-});
-
 /** handle other requests to index.html */
 // app.get('*', (req, res, next) => res.redirect('/'));
 
