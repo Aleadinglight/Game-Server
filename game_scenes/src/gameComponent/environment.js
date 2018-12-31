@@ -9,10 +9,10 @@ class Environment extends Component {
         const canvas = this.refs.canvas;
         const ctx = canvas.getContext("2d");
         var propsForPlayer = {
-            x : 300,
-            y : 500,
-            width : 100,
-            height : 100,
+            x : 10,
+            y : 10,
+            width : 20,
+            height : 20,
             ctx : ctx,
         }
         var player = new Player(propsForPlayer);
